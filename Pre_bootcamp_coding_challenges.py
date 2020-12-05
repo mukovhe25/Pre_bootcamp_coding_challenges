@@ -142,14 +142,12 @@ print(num_3(10,3))
 # 
 # This might help: https://www.wikihow.com/Calculate-the-Area-of-a-Triangle
 
-# In[11]:
+# In[32]:
 
-
-import numpy as np
 
 def tri_area (p1, p2, p3):
     s = (p1 + p2 + p3)/2
-    area = np.sqrt(s*(s-p1)*(s-p2)*(s-p3))
+    area = (s*(s-p1)*(s-p2)*(s-p3))**(1/2)
     return area
 
 # Example
@@ -158,7 +156,7 @@ b = 4
 c = 3
 
 # Assuming that the measurements are given in meters
-print("The area of a triangle with three sides of length " + str(a) + "m, " + str(b) + "m, and " + str(c) + "m is " + str(np.round(tri_area(a,b,c), 2)) + "square meters.")
+print("The area of a triangle with three sides of length " + str(a) + "m, " + str(b) + "m, and " + str(c) + "m is " + str(tri_area(a,b,c)) + " square meters.")
 
 
 # ## Task 6
@@ -232,20 +230,43 @@ print(str(temp_in_fereignheit) + " fereignheit equals " + str(temparature_in_Cel
 # ## Task 8
 # Make a function to convert any number into hours and minutes. (For example, 71 will become “1 hour, 11 minutes”; 133 will become “2 hours, 13 minutes”.)
 
-# In[32]:
+# In[36]:
 
 
 def time (x):
-    if x < 60:
-        print(str(x) + " minutes.")
+    if x < 0:
+        print("Enter a positive number")
+    
+    elif (x == 0) | (x == 1):
+        print(str(x) + " minute")
         
-    elif x > 60:
+    elif (x > 1) & (x < 60):
+        print(str(x) + " minutes")
+        
+    elif x >= 60:
         h = int(x/60) # this gives us the number of hours
         m = x % 60 # the remainder of x gives us number of minutes
-        print(str(h) + " hours, " + str(m) + " minutes.")
-
+        
+        if (h < 2) & (m < 2):
+            print(str(h) + " hour, " + str(m) + " minute")
+        
+        elif (h < 2) & (m >= 2):
+            print(str(h) + " hour, " + str(m) + " minutes")
+        
+        elif (h >= 2) & (m >= 2):
+            print(str(h) + " hours, " + str(m) + " minutes")
+        
+        else:
+            print(str(h) + " hours, " + str(m) + " minute")
+        
 # Example
-time(226)
+time(1)
+time(2)
+time(60)
+time(61)
+time(63)
+time(121)
+time(350)
 
 
 # ## Task 9
@@ -253,7 +274,7 @@ time(226)
 # 
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
-# In[18]:
+# In[40]:
 
 
 import numpy as np
@@ -261,30 +282,32 @@ import numpy as np
 i = 3
 a = 5
 
+sum_3 = 0
+sum_5 = 0
+common = 0
+
 mul_3 = []
 mul_5 = []
-common = []
 
 # multiples of 3 below 1000.
 while i < 1000:
     mul_3 += [i]
+    sum_3 += i
     i += 3
 
 # multiples of 5 below 1000.
 while a < 1000:
     mul_5 += [a]
+    sum_5 += a
     a += 5
 
 # multiples of 3 and 5 below 1000 that are equal.
 for i in mul_3:
     if i in mul_5:
-        common += [i]
-        
-mul_3_and_5 = np.sum(mul_3 + mul_5)
-common_sum = np.sum(common)
-sum_of_mul = np.sum(mul_3_and_5 - common_sum) # we don't want to count common multiples of 3 and 5 twice
+        common += i 
 
-print(sum_of_mul)
+sum_of_mul = sum_3 + sum_5 - common  # we don't want to count common multiples of 3 and 5 twice     
+print(sum_mul)
 
 
 # ## Task 10
