@@ -274,10 +274,8 @@ time(350)
 # 
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
-# In[40]:
+# In[4]:
 
-
-import numpy as np
 
 i = 3
 a = 5
@@ -307,7 +305,7 @@ for i in mul_3:
         common += i 
 
 sum_of_mul = sum_3 + sum_5 - common  # we don't want to count common multiples of 3 and 5 twice     
-print(sum_mul)
+print(sum_of_mul)
 
 
 # ## Task 10
