@@ -241,9 +241,12 @@ def vowel (x):
         if i in vowels:
             values += [i]
             
-    print('Vowels: ')
+    print('Vowels:', end = " ")       
     for i in range(len(values)):
-        print(values[i], end = " ")
+        if (i >= 0) & (i < (len(values) - 1)):
+            print(values[i], end = ", ")
+        else:
+            print(values[i])
             
 vowel('Orange')
 
@@ -258,9 +261,12 @@ def common_characters(x, y):
         if i in y:
             letters += [i]
             
-    print('Common letters: ')
+    print('Common letters:', end = " ")       
     for i in range(len(letters)):
-        print(letters[i], end = " ")
+        if (i >= 0) & (i < (len(letters) - 1)):
+            print(letters[i], end = ", ")
+        else:
+            print(letters[i])
         
 # Example
-common_characters('alice', 'david')
+common_characters('alice', 'daniel')
